@@ -16,9 +16,7 @@ fun findSteps(start: String, finish: String, words : List<String>): List<String>
 
     while (queue.isNotEmpty()){
         val previousWords = queue.removeAt(0)
-        val nextWords = findCloseWords(previousWords.last(), words).
-
-
+        val nextWords = findCloseWords(previousWords.last(), words).filterNot { it in previousWords }
         if (nextWords.contains(finish)){
             return previousWords.addWord(finish)
         }
