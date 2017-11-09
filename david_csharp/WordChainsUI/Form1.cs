@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using WordChains;
+using System.Diagnostics;
 
 namespace WordChainsUI
 {
@@ -20,16 +21,20 @@ namespace WordChainsUI
 
             var chains = new Chains()
             {
-                Dictionary = GetDictionary()
+                Dictionary = GetDictionary(startWord.Length)
             };
-            var chain = chains.Create(startWord, endWord);
 
-            this.lblAnswer.Text = chain;
+            var sw = new Stopwatch();
+            sw.Start();
+            var chain = chains.Create(startWord, endWord);
+            sw.Stop();
+
+            this.lblAnswer.Text = chain + $" ({Math.Round(sw.Elapsed.TotalSeconds,2)}s)";
         }
 
-        private HashSet<string> GetDictionary()
+        private HashSet<string> GetDictionary(int wordLength)
         {
-            return new HashSet<string>(System.IO.File.ReadAllLines(@"words.txt").Select(a=>a.ToUpper()));
+            return new HashSet<string>(System.IO.File.ReadAllLines(@"words.txt").Where(a => a.Length == wordLength).Select(a=>a.ToUpper()));
         }
     }
 }

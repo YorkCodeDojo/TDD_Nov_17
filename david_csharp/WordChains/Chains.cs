@@ -13,9 +13,10 @@ namespace WordChains
         }
         public string Create(string startWord, string endWord)
         {
-            if (startWord == endWord) return startWord;
+            var numberOfDifferentLetters = CountNumberOfDifferentLetters(startWord, endWord);
+            if (numberOfDifferentLetters == 0) return startWord;
 
-            var maxLevel = 1;
+            var maxLevel = numberOfDifferentLetters - 1;
             var result = "";
             while (result == "")
             {
@@ -41,32 +42,47 @@ namespace WordChains
                 }
                 else
                 {
-                    var result = NextLevel(newWord.Item2, newPath, endWord, level + 1, MaxLevel, newWord.Item1);
-                    if (result != "") return result;
+                    if (level + 1 < MaxLevel)
+                    {
+                        var result = NextLevel(newWord.Item2, newPath, endWord, level + 1, MaxLevel, newWord.Item1);
+                        if (result != "") return result;
+                    }
                 }
             }
 
             return "";
         }
 
+        private static int CountNumberOfDifferentLetters(string startWord, string endWord)
+        {
+            var numberDifferent = 0;
+            for (int i = 0; i < startWord.Length; i++)
+            {
+                if (startWord[i] != endWord[i]) numberDifferent++;
+            }
+            return numberDifferent;
+        }
+
         private List<Tuple<int, string>> PossibleWords(string path, string baseWord, int lastPosition)
         {
             var result = new List<Tuple<int, string>>();
 
+            var letters = baseWord.ToCharArray();
             for (int i = 0; i < baseWord.Length; i++)
             {
                 if (i != lastPosition)
                 {
-                    var letters = baseWord.ToCharArray();
+                    var original = letters[i];
                     for (char c = 'A'; c <= 'Z'; c++)
                     {
                         letters[i] = c;
-                        var newWord = string.Join("", letters);
+                        var newWord = new string(letters);
                         if (this.Dictionary.Contains(newWord) && !path.Contains(newWord))
                         {
                             result.Add(new Tuple<int, string>(i, newWord));
                         }
                     }
+                    letters[i] = original;
                 }
             }
 
