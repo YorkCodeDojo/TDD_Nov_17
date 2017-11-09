@@ -1,0 +1,6 @@
+C:/Dev/dojo/build/CMakeFiles/unittests.dir
+C:/Dev/dojo/build/CMakeFiles/DojoLib.dir
+C:/Dev/dojo/build/CMakeFiles/Dojo.dir
+C:/Dev/dojo/build/CMakeFiles/RUN_TESTS.dir
+C:/Dev/dojo/build/CMakeFiles/ALL_BUILD.dir
+C:/Dev/dojo/build/CMakeFiles/ZERO_CHECK.dir

@@ -1,0 +1,4 @@
+#define APPLICATION_NAME "Dojo"
+#define APPLICATION_VERSION "0.1.0"
+
+
