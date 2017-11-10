@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace WordChains
 {
-    public class Chains
+    public class DepthChains
     {
         public HashSet<string> Dictionary { get; set; }
 
-        public Chains()
+        public DepthChains()
         {
             this.Dictionary = new HashSet<string>();
         }
@@ -75,11 +75,14 @@ namespace WordChains
                     var original = letters[i];
                     for (char c = 'A'; c <= 'Z'; c++)
                     {
-                        letters[i] = c;
-                        var newWord = new string(letters);
-                        if (this.Dictionary.Contains(newWord) && !path.Contains(newWord))
+                        if (c != original)
                         {
-                            result.Add(new Tuple<int, string>(i, newWord));
+                            letters[i] = c;
+                            var newWord = new string(letters);
+                            if (this.Dictionary.Contains(newWord) && !path.Contains(newWord))
+                            {
+                                result.Add(new Tuple<int, string>(i, newWord));
+                            }
                         }
                     }
                     letters[i] = original;

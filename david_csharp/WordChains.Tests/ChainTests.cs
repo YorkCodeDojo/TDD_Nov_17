@@ -71,7 +71,7 @@ namespace WordChains.Tests
             //  AAA => AAC => BAC => BBC => BBE
             //  AAA => AAB
 
-            var chains = new Chains()
+            var chains = new BreadthChains()
             {
                 Dictionary = new HashSet<string>() { "AAA", "AAC", "BAC", "BBC", "AAB", "BBE" }
             };
@@ -86,7 +86,7 @@ namespace WordChains.Tests
                                                      "ABA", "CBA" };
         private static string CreateChain(string startWord, string endWord)
         {
-            var chains = new Chains()
+            var chains = new BreadthChains()
             {
                 Dictionary = GetDictionary()
             };

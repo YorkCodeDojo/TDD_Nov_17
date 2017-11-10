@@ -33,7 +33,8 @@
             this.txtTo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblAnswer = new System.Windows.Forms.Label();
-            this.cmdGo = new System.Windows.Forms.Button();
+            this.cmdDepth = new System.Windows.Forms.Button();
+            this.cmdBreadth = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -71,30 +72,42 @@
             // lblAnswer
             // 
             this.lblAnswer.AutoSize = true;
-            this.lblAnswer.Location = new System.Drawing.Point(31, 82);
+            this.lblAnswer.Location = new System.Drawing.Point(31, 80);
             this.lblAnswer.Name = "lblAnswer";
-            this.lblAnswer.Size = new System.Drawing.Size(71, 21);
+            this.lblAnswer.Size = new System.Drawing.Size(109, 21);
             this.lblAnswer.TabIndex = 4;
-            this.lblAnswer.Text = "Press Go";
+            this.lblAnswer.Text = "Press a button";
             // 
-            // cmdGo
+            // cmdDepth
             // 
-            this.cmdGo.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cmdGo.Location = new System.Drawing.Point(619, 27);
-            this.cmdGo.Name = "cmdGo";
-            this.cmdGo.Size = new System.Drawing.Size(88, 34);
-            this.cmdGo.TabIndex = 5;
-            this.cmdGo.Text = "Go";
-            this.cmdGo.UseVisualStyleBackColor = true;
-            this.cmdGo.Click += new System.EventHandler(this.cmdGo_Click);
+            this.cmdDepth.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cmdDepth.Location = new System.Drawing.Point(604, 27);
+            this.cmdDepth.Name = "cmdDepth";
+            this.cmdDepth.Size = new System.Drawing.Size(88, 34);
+            this.cmdDepth.TabIndex = 5;
+            this.cmdDepth.Text = "Depth";
+            this.cmdDepth.UseVisualStyleBackColor = true;
+            this.cmdDepth.Click += new System.EventHandler(this.cmdGo_Click);
+            // 
+            // cmdBreadth
+            // 
+            this.cmdBreadth.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cmdBreadth.Location = new System.Drawing.Point(712, 26);
+            this.cmdBreadth.Name = "cmdBreadth";
+            this.cmdBreadth.Size = new System.Drawing.Size(88, 34);
+            this.cmdBreadth.TabIndex = 6;
+            this.cmdBreadth.Text = "Breadth";
+            this.cmdBreadth.UseVisualStyleBackColor = true;
+            this.cmdBreadth.Click += new System.EventHandler(this.cmdBreadth_Click);
             // 
             // Form1
             // 
-            this.AcceptButton = this.cmdGo;
+            this.AcceptButton = this.cmdDepth;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(771, 142);
-            this.Controls.Add(this.cmdGo);
+            this.ClientSize = new System.Drawing.Size(897, 136);
+            this.Controls.Add(this.cmdBreadth);
+            this.Controls.Add(this.cmdDepth);
             this.Controls.Add(this.lblAnswer);
             this.Controls.Add(this.txtTo);
             this.Controls.Add(this.label2);
@@ -120,7 +133,8 @@
         private System.Windows.Forms.TextBox txtTo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblAnswer;
-        private System.Windows.Forms.Button cmdGo;
+        private System.Windows.Forms.Button cmdDepth;
+        private System.Windows.Forms.Button cmdBreadth;
     }
 }
 

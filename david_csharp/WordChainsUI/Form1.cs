@@ -19,22 +19,44 @@ namespace WordChainsUI
             var startWord = this.txtFrom.Text.Trim().ToUpper();
             var endWord = this.txtTo.Text.Trim().ToUpper();
 
-            var chains = new Chains()
+
+            var sw = new Stopwatch();
+            sw.Start();
+
+            var chains = new DepthChains()
             {
                 Dictionary = GetDictionary(startWord.Length)
             };
 
-            var sw = new Stopwatch();
-            sw.Start();
             var chain = chains.Create(startWord, endWord);
             sw.Stop();
 
-            this.lblAnswer.Text = chain + $" ({Math.Round(sw.Elapsed.TotalSeconds,2)}s)";
+            this.lblAnswer.Text = "Depth :: " + chain + $" ({Math.Round(sw.Elapsed.TotalSeconds, 2)}s)";
         }
 
         private HashSet<string> GetDictionary(int wordLength)
         {
-            return new HashSet<string>(System.IO.File.ReadAllLines(@"words.txt").Where(a => a.Length == wordLength).Select(a=>a.ToUpper()));
+            return new HashSet<string>(System.IO.File.ReadAllLines(@"words.txt").Where(a => a.Length == wordLength).Select(a => a.ToUpper()));
+        }
+
+        private void cmdBreadth_Click(object sender, EventArgs e)
+        {
+            var startWord = this.txtFrom.Text.Trim().ToUpper();
+            var endWord = this.txtTo.Text.Trim().ToUpper();
+
+
+            var sw = new Stopwatch();
+            sw.Start();
+
+            var chains = new BreadthChains()
+            {
+                Dictionary = GetDictionary(startWord.Length)
+            };
+
+            var chain = chains.Create(startWord, endWord);
+            sw.Stop();
+
+            this.lblAnswer.Text = "Breadth :: " + chain + $" ({Math.Round(sw.Elapsed.TotalSeconds, 2)}s)";
         }
     }
 }
