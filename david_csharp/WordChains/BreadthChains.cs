@@ -7,18 +7,24 @@ namespace WordChains
 {
     public class BreadthChains
     {
+        public HashSet<string> UsedWords { get; set; }
         public HashSet<string> Dictionary { get; set; }
 
         public BreadthChains()
         {
             this.Dictionary = new HashSet<string>();
+            
         }
         public string Create(string startWord, string endWord)
         {
             if (startWord == endWord) return startWord;
 
+            this.UsedWords = new HashSet<string>();
+
             var queue = new Queue<QueuedPath>();
             queue.Enqueue(new QueuedPath() { LastChanged = -1, Path = "", Word = startWord });
+            this.UsedWords.Add(startWord);
+
             while (queue.Count > 0)
             {
                 var previousWords = queue.Dequeue();
@@ -41,6 +47,8 @@ namespace WordChains
                         Path = previousWords.Path + "->" + previousWords.Word
                     };
                     queue.Enqueue(newEntry);
+
+                    this.UsedWords.Add(possibleWord.Item2);
                 }
             }
 
@@ -63,7 +71,7 @@ namespace WordChains
                         {
                             letters[i] = c;
                             var newWord = new string(letters);
-                            if (this.Dictionary.Contains(newWord) && !path.Contains(newWord))
+                            if (this.Dictionary.Contains(newWord) && !this.UsedWords.Contains(newWord))
                             {
                                 result.Add(new Tuple<int, string>(i, newWord));
                             }
