@@ -19,7 +19,6 @@ namespace WordChains
 
             var queue = new Queue<QueuedPath>();
             queue.Enqueue(new QueuedPath() { LastChanged = -1, Path = "", Word = startWord });
-            var maxCount = 0;
             while (queue.Count > 0)
             {
                 var previousWords = queue.Dequeue();
@@ -43,10 +42,6 @@ namespace WordChains
                     };
                     queue.Enqueue(newEntry);
                 }
-
-                maxCount = Math.Max(maxCount, (queue.Count));
-
-
             }
 
             return "";
